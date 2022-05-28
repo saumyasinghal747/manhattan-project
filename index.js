@@ -76,6 +76,9 @@ function moveToTween(x,y, dur=3000, del) {
             z: meters(y)
         },dur || 3000)
         .easing(TWEEN.Easing.Linear.None)
+        tween.onComplete(()=>{
+            camera.getWorldDirection(target)
+        })
     return tween.delay(del)
 }
 
