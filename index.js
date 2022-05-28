@@ -79,7 +79,7 @@ function moveToTween(x,y, dur=3000, del) {
     return tween.delay(del)
 }
 
-lookAtTween(8, -15, 5, 7, 12, 5, 4000).chain(moveToTween(12, 14, null, 4000).chain(lookAtTween(7, 12, 5, 15, 13, 5, 4000))).start()
+lookAtTween(8, -15, 5, 7, 12, 5, 4000).chain(moveToTween(12, 14, null, 4000).chain(lookAtTween(7, 12, 5, 15, 12, 6.5, null, 500))).start()
 
 
 
