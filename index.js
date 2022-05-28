@@ -41,11 +41,9 @@ scene.add(ceiling, floor);
 camera.position.x = meters(12);
 camera.position.z = meters(15);
 camera.position.y = meters(5)
-let target = {
-    x: meters(8), y: meters(5), z: meters(-15)
-}
+let target = new THREE.Vector3( meters(8),  meters(5), meters(-15))
 
-camera.lookAt(target.x, target.y, target.z)
+camera.lookAt(target)
 controls.lookSpeed = 0.05
 controls.movementSpeed = 10
 controls.enabled = false
@@ -54,9 +52,8 @@ controls.enabled = false
 
 
 
-function lookAtTween(fx, fy, fz, x,y,z, dur = 3000, del) {
-    let t = {x: meters(fx), y: meters(fz), z: meters(fy)}
-    const tween = new TWEEN.Tween(t)
+function lookAtTween(x,y,z, dur = 3000, del) {
+    const tween = new TWEEN.Tween(target)
         .to({
             x: meters(x),
             y: meters(z || 5),
@@ -64,7 +61,10 @@ function lookAtTween(fx, fy, fz, x,y,z, dur = 3000, del) {
         },dur || 3000)
         .easing(TWEEN.Easing.Linear.None)
     tween.onUpdate(() => {
-        camera.lookAt(t.x, t.y, t.z)
+        camera.lookAt(target)
+    })
+    tween.onComplete(()=>{
+        camera.getWorldDirection(target)
     })
     return tween.delay(del || 4000)
 }
@@ -79,7 +79,7 @@ function moveToTween(x,y, dur=3000, del) {
     return tween.delay(del)
 }
 
-lookAtTween(8, -15, 5, 7, 12, 5, 4000).chain(moveToTween(12, 14, null, 4000).chain(lookAtTween(7, 12, 5, 15, 12, 6.5, null, 500))).start()
+lookAtTween(7, 12, 5, 4000).chain(moveToTween(12, 14, null, 4000).chain(lookAtTween(15, 12, 6.5, null, 500))).start()
 
 
 
