@@ -104,12 +104,12 @@ function tweenChain(root, ...tweens) {
 }
 
 tweenChain(
-    /** 
+    ///** 
     lookAtTween(7, 12, 5),
     moveToTween(12, 14, 5),
     lookAtTween(15, 12, 6.5, null, 500),
     lookAtTween(8, -15, 5, null, 500),
-    **/
+    //**/
     moveToTween(9, -2, 5, null, 0),
     lookAtTween(0, -10, 5.5),
     lookAtTween(15, -15, 5, null, 0),
