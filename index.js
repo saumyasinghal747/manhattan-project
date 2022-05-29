@@ -56,15 +56,16 @@ scene.add(ceiling, floor);
 
 /** PANELS */
 
-function createPanel(img, x, y, z, dirx, dirz) {
+function createPanel(imgURL, x, y, z, w, h, dirx, dirz) {
+    const img = loader.load(`textures/panels/${imgURL}`)
     var material = new THREE.MeshLambertMaterial({
-        map: loader.load(`textures/panels/${img}`),
+        map: img,
         side: THREE.DoubleSide
     });
     x = meters(x);
     y = meters(y);
     z = meters(z);
-    var geometry = new THREE.PlaneGeometry(meters(18), meters(7));
+    var geometry = new THREE.PlaneGeometry(meters(w), meters(h));
 
     // combine our image geometry and material into a mesh
     var mesh = new THREE.Mesh(geometry, material);
@@ -78,7 +79,10 @@ function createPanel(img, x, y, z, dirx, dirz) {
 
 }
 
-createPanel('timeline1.png', 14.74, 6.5, -4, -1, 0)
+createPanel('timeline1.png', 14.74, 6.5, -4, 18, 7, -1, 0)
+createPanel('timeline3.png', 1.26, 6.5, -9.5, 7, 7, 1, 0)
+createPanel('numbers.png', 14.74, 6.5, 11, 6, 7, -1, 0)
+createPanel('espionage1.png', -0.26, 6.5, -10, 6, 7, -1, 0)
 
 /** FILMING */
 
