@@ -22,4 +22,4 @@ screen.lookAt( meters(8.1), meters(8), meters(0) );
 scene.add( screen )
 
 const rectLightHelper = new RectAreaLightHelper( screen );
-rectLight.add( rectLightHelper );
+screen.add( rectLightHelper );
