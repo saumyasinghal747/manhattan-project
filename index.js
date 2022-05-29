@@ -15,14 +15,14 @@ const controls = new FirstPersonControls(camera, renderer.domElement);
 
 const axesHelper = new THREE.AxesHelper(meters(40));
 const axesHelper2 = new THREE.AxesHelper(meters(-40));
-scene.add(axesHelper, axesHelper2);
+//scene.add(axesHelper, axesHelper2);
 const clock = new THREE.Clock(true)
 
 controls.maxPolarAngle = (Math.PI * 0.6);
 controls.maxDistance = meters(1)
 controls.target = new THREE.Vector3(0, meters(5), 0)
 const helper = new THREE.CameraHelper(camera);
-scene.add(helper);
+//scene.add(helper);
 
 scene.background = new THREE.Color(0xa0a0a0);
 scene.fog = new THREE.Fog(0xa0a0a0, 10, 50);
