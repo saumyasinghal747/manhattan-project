@@ -44,7 +44,7 @@ scene.add(mesh);
 
 const wood = new THREE.TextureLoader().load("textures/wood.png");
 const geometry = new THREE.PlaneGeometry(meters(32), meters(32));
-const material = new THREE.MeshStandardMaterial({ map: wood, side: THREE.DoubleSide });
+const material = new THREE.MeshStandardMaterial({ map: wood, side: THREE.DoubleSide, roughness: 0.3 });
 const ceiling = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ color: 0xcacaca, side: THREE.DoubleSide }));
 ceiling.position.set(0, meters(30), 0)
 ceiling.lookAt(0, 0, 0);
@@ -61,7 +61,7 @@ let target = new THREE.Vector3(meters(8), meters(5), meters(-15))
 camera.lookAt(target)
 controls.lookSpeed = 0.05
 controls.movementSpeed = 10
-controls.lookVertical = false
+controls.lookVertical = true
 controls.enabled = false
 
 /** animation of camera */
@@ -100,12 +100,15 @@ function tweenChain(root, ...tweens) {
         root.onComplete(() => { controls.enabled = true })
         return root
     }
+    root.onStop(() => { controls.enabled = true })
     return root.chain(tweenChain(...tweens))
 }
 
-tweenChain(
+const movie = tweenChain(
     ///** 
-    lookAtTween(7, 12, 5),
+    moveToTween(12, 15, 5, 0, 0),
+    lookAtTween(8, -15, 5, 0, 0),
+    lookAtTween(7, 12, 5, null, 0),
     moveToTween(12, 14, 5),
     lookAtTween(15, 12, 6.5, null, 500),
     lookAtTween(8, -15, 5, null, 500),
@@ -123,7 +126,7 @@ tweenChain(
     lookAtTween(-15, -15, 5.5),
     moveToTween(-5, -5, 5)
 
-).start()
+)//.start()
 
 
 
@@ -144,3 +147,20 @@ animate();
 Object.assign(window, {
     scene, camera, THREE, renderer, controls, clock, lookAtTween, moveToTween, TWEEN
 })
+
+document.addEventListener('keydown', (event) => {
+    var name = event.key;
+    var code = event.code;
+    // Alert the key name and key code on keydown
+    console.log({code, name});
+    if (name === 'p'){
+        //movie.stop();
+        movie.start()
+    }
+    if (code === 'Escape'){
+        //alert('hi')
+        TWEEN.removeAll();
+        controls.enabled = !controls.enabled
+        //movie.stop();
+    }
+  }, false);
