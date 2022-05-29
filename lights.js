@@ -16,10 +16,10 @@ const light4 = new THREE.PointLight( 0xffeedd, 0.5, 30 );
 light4.position.set( meters(8), meters(31), -meters(8) );
 scene.add( light1, light2, light3, light4 );
 
-const rectLight = new THREE.RectAreaLight( 0xffffff, 1.5,  meters(14), meters(10) );
-rectLight.position.set( meters(8.1), meters(8), -meters(14));
-rectLight.lookAt( meters(8.1), meters(8), meters(0) );
-scene.add( rectLight )
+const screen = new THREE.RectAreaLight( 0xffffff, 1.5,  meters(14), meters(10) );
+screen.position.set( meters(8.1), meters(8), -meters(14.5));
+screen.lookAt( meters(8.1), meters(8), meters(0) );
+scene.add( screen )
 
-const rectLightHelper = new RectAreaLightHelper( rectLight );
+const rectLightHelper = new RectAreaLightHelper( screen );
 rectLight.add( rectLightHelper );

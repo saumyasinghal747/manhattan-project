@@ -2,9 +2,9 @@ import { GLTFLoader } from 'https://unpkg.com/three@latest/examples/jsm/loaders/
   const loader = new GLTFLoader();
 
   loader.load( 'models/untitled.gltf', function ( gltf ) {
-    gltf.scene.position.x = -4.5
+    gltf.scene.position.x = meters(-15)
     gltf.scene.position.y = 0
-    gltf.scene.position.z = -4.5
+    gltf.scene.position.z = meters(-15)
     scene.add( gltf.scene );
 
   }, undefined, function ( error ) {
@@ -12,3 +12,16 @@ import { GLTFLoader } from 'https://unpkg.com/three@latest/examples/jsm/loaders/
     console.error( error );
 
   } );
+
+loader.load('models/fat_man_bomb/scene.gltf', function ( gltf ) {
+    gltf.scene.position.x = meters(0)
+    gltf.scene.position.y = meters(19)
+    gltf.scene.position.z = meters(0)
+    gltf.scene.scale.set(1,1,1)
+    scene.add( gltf.scene );
+
+  }, undefined, function ( error ) {
+
+    console.error( error );
+
+  })
