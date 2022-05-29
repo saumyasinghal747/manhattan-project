@@ -53,6 +53,35 @@ floor.position.set(0, 0, 0)
 floor.lookAt(0, 0.00000001, 0);
 scene.add(ceiling, floor);
 
+
+/** PANELS */
+
+function createPanel(img, x, y, z, dirx, dirz) {
+    var material = new THREE.MeshLambertMaterial({
+        map: loader.load(`textures/panels/${img}`),
+        side: THREE.DoubleSide
+    });
+    x = meters(x);
+    y = meters(y);
+    z = meters(z);
+    var geometry = new THREE.PlaneGeometry(meters(18), meters(7));
+
+    // combine our image geometry and material into a mesh
+    var mesh = new THREE.Mesh(geometry, material);
+
+    // set the position of the image mesh in the x,y,z dimensions
+    mesh.position.set(x, y, z)
+    mesh.lookAt(x+dirx, y, z+dirz)
+
+    // add the image to the scene
+    scene.add(mesh);
+
+}
+
+createPanel('timeline1.png', 14.74, 6.5, -4, -1, 0)
+
+/** FILMING */
+
 camera.position.x = meters(12);
 camera.position.z = meters(15);
 camera.position.y = meters(5)
@@ -120,7 +149,7 @@ const movie = tweenChain(
     lookAtTween(6, 1, 5.5),
     lookAtTween(0, -1, 5.5),
     moveToTween(-2, -2, 5),
-    lookAtTween(-15,0, 5.5),
+    lookAtTween(-15, 0, 5.5),
     lookAtTween(-15, -15, 5.5),
     lookAtTween(0, -15, 5.5),
     lookAtTween(-15, -15, 5.5),
@@ -152,15 +181,15 @@ document.addEventListener('keydown', (event) => {
     var name = event.key;
     var code = event.code;
     // Alert the key name and key code on keydown
-    console.log({code, name});
-    if (name === 'p'){
+    console.log({ code, name });
+    if (name === 'p') {
         //movie.stop();
         movie.start()
     }
-    if (code === 'Escape'){
+    if (code === 'Escape') {
         //alert('hi')
         TWEEN.removeAll();
         controls.enabled = !controls.enabled
         //movie.stop();
     }
-  }, false);
+}, false);
