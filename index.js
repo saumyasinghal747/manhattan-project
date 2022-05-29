@@ -96,7 +96,7 @@ function moveToTween(x, y, z, dur = 3000, del) {
 
 lookAtTween(7, 12, 5, 4000)
 .chain(moveToTween(12, 14, 5, null, 4000)
-.chain(lookAtTween(15, 12, 6.5, null, 500)
+.chain(lookAtTween(15, 12, 6.5, null, 500).onComplete(()=>{controls.enabled = true})
 )).start()
 
 
