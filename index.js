@@ -45,7 +45,7 @@ scene.add(mesh);
 const wood = new THREE.TextureLoader().load("textures/wood.png");
 const geometry = new THREE.PlaneGeometry(meters(32), meters(32));
 const material = new THREE.MeshStandardMaterial({ map: wood, side: THREE.DoubleSide, roughness: 0.3 });
-const ceiling = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ color: 0xcacaca, side: THREE.DoubleSide }));
+const ceiling = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({ color: 0xcacaca, side: THREE.DoubleSide }));
 ceiling.position.set(0, meters(30), 0)
 ceiling.lookAt(0, 0, 0);
 const floor = new THREE.Mesh(geometry, material);
@@ -53,14 +53,16 @@ floor.position.set(0, 0, 0)
 floor.lookAt(0, 0.00000001, 0);
 scene.add(ceiling, floor);
 
-
+const loader = new THREE.TextureLoader();
 /** PANELS */
 
 function createPanel(imgURL, x, y, z, w, h, dirx, dirz) {
     const img = loader.load(`textures/panels/${imgURL}`)
-    var material = new THREE.MeshLambertMaterial({
+    var material = new THREE.MeshPhongMaterial({
         map: img,
-        side: THREE.DoubleSide
+        side: THREE.DoubleSide,
+        shininess: 100,
+        specular: new THREE.Color(0xfff999)
     });
     x = meters(x);
     y = meters(y);
@@ -83,6 +85,7 @@ createPanel('timeline1.png', 14.74, 6.5, -4, 18, 7, -1, 0)
 createPanel('timeline3.png', 1.26, 6.5, -9.5, 7, 7, 1, 0)
 createPanel('numbers.png', 14.74, 6.5, 11, 6, 7, -1, 0)
 createPanel('espionage1.png', -0.26, 6.5, -10, 6, 7, -1, 0)
+createPanel('espionage2.png', -4.25, 6.5, -14.74, 4.5, 7, 0, 1)
 
 /** FILMING */
 
