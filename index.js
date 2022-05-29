@@ -94,10 +94,20 @@ function moveToTween(x, y, z, dur = 3000, del) {
     return tween.delay(del)
 }
 
-lookAtTween(7, 12, 5, 4000)
-.chain(moveToTween(12, 14, 5, null, 4000)
-.chain(lookAtTween(15, 12, 6.5, null, 500).onComplete(()=>{controls.enabled = true})
-)).start()
+function tweenChain(root, ...tweens){
+    if (tweens.length == 0){
+        root.onComplete(()=>{controls.enabled = true})
+        return root
+    }
+    return root.chain(tweenChain(...tweens))
+}
+
+tweenChain(lookAtTween(7, 12, 5, 4000),
+ moveToTween(12, 14, 5, null, 4000),
+  lookAtTween(15, 12, 6.5, null, 500),
+  lookAtTween(8, -15, 5, null, 500),
+  moveToTween(9, -2, 5, null, 4000)
+).start()
 
 
 
