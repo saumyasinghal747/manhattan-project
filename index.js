@@ -36,16 +36,16 @@ dirLight.shadow.camera.right = 2;
 dirLight.shadow.camera.near = 0.1;
 dirLight.shadow.camera.far = 40;
 scene.add(dirLight);
-const mesh = new THREE.Mesh( new THREE.PlaneGeometry( 100, 100 ), new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } ) );
-				mesh.rotation.x = - Math.PI / 2;
-				mesh.receiveShadow = true;
-				scene.add( mesh );
+const mesh = new THREE.Mesh(new THREE.PlaneGeometry(100, 100), new THREE.MeshPhongMaterial({ color: 0x999999, depthWrite: false }));
+mesh.rotation.x = - Math.PI / 2;
+mesh.receiveShadow = true;
+scene.add(mesh);
 
 
 const wood = new THREE.TextureLoader().load("textures/wood.png");
 const geometry = new THREE.PlaneGeometry(meters(32), meters(32));
 const material = new THREE.MeshStandardMaterial({ map: wood, side: THREE.DoubleSide });
-const ceiling = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ color:0xcacaca, side: THREE.DoubleSide }));
+const ceiling = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ color: 0xcacaca, side: THREE.DoubleSide }));
 ceiling.position.set(0, meters(30), 0)
 ceiling.lookAt(0, 0, 0);
 const floor = new THREE.Mesh(geometry, material);
@@ -61,6 +61,7 @@ let target = new THREE.Vector3(meters(8), meters(5), meters(-15))
 camera.lookAt(target)
 controls.lookSpeed = 0.05
 controls.movementSpeed = 10
+controls.lookVertical = false
 controls.enabled = false
 
 /** animation of camera */
@@ -73,7 +74,7 @@ function lookAtTween(x, y, z, dur = 3000, del) {
             x: meters(x),
             y: meters(z || 5),
             z: meters(y)
-        }, dur || 3000)
+        }, dur || 1000)
         .easing(TWEEN.Easing.Linear.None)
     tween.onUpdate(() => {
         camera.lookAt(target)
@@ -86,27 +87,42 @@ function moveToTween(x, y, z, dur = 3000, del) {
             x: meters(x),
             y: meters(z),
             z: meters(y)
-        }, dur || 3000)
+        }, dur || 1000)
         .easing(TWEEN.Easing.Linear.None)
     tween.onComplete(() => {
         camera.getWorldDirection(target)
     })
-    return tween.delay(del)
+    return tween.delay(del || 4000)
 }
 
-function tweenChain(root, ...tweens){
-    if (tweens.length == 0){
-        root.onComplete(()=>{controls.enabled = true})
+function tweenChain(root, ...tweens) {
+    if (tweens.length == 0) {
+        root.onComplete(() => { controls.enabled = true })
         return root
     }
     return root.chain(tweenChain(...tweens))
 }
 
-tweenChain(lookAtTween(7, 12, 5, 4000),
- moveToTween(12, 14, 5, null, 4000),
-  lookAtTween(15, 12, 6.5, null, 500),
-  lookAtTween(8, -15, 5, null, 500),
-  moveToTween(9, -2, 5, null, 4000)
+tweenChain(
+    /** 
+    lookAtTween(7, 12, 5),
+    moveToTween(12, 14, 5),
+    lookAtTween(15, 12, 6.5, null, 500),
+    lookAtTween(8, -15, 5, null, 500),
+    **/
+    moveToTween(9, -2, 5, null, 0),
+    lookAtTween(0, -10, 5.5),
+    lookAtTween(15, -15, 5, null, 0),
+    lookAtTween(15, 0, 5, null, 0),
+    lookAtTween(6, 1, 5.5),
+    lookAtTween(0, -1, 5.5),
+    moveToTween(-2, -2, 5),
+    lookAtTween(-15,0, 5.5),
+    lookAtTween(-15, -15, 5.5),
+    lookAtTween(0, -15, 5.5),
+    lookAtTween(-15, -15, 5.5),
+    moveToTween(-5, -5, 5)
+
 ).start()
 
 
