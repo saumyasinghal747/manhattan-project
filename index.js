@@ -82,6 +82,8 @@ function createPanel(imgURL, x, y, z, w, h, dirx, dirz) {
 }
 
 createPanel('timeline1.png', 14.74, 6.5, -4, 18, 7, -1, 0)
+const theta = 3*Math.PI/4
+createPanel('timeline2.png', 4.95, 6.5, 2.9, 8.55, 7, -Math.cos(theta), -Math.sin(theta))
 createPanel('timeline3.png', 1.26, 6.5, -9.5, 7, 7, 1, 0)
 createPanel('numbers.png', 14.74, 6.5, 11, 6, 7, -1, 0)
 createPanel('espionage1.png', -0.26, 6.5, -10, 6, 7, -1, 0)
