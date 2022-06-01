@@ -95,7 +95,7 @@ createPanel('espionage5.png', -14.74, 6.5, -4.25, 4.5, 7, 1,0)
 createPanel('coldwar1.png', -14.74, 6.5, 5, 4, 7, 1,0)
 createPanel('coldwar2.png', -14.74, 6.5, 11, 4, 7, 1,0)
 createPanel('coldwar3.png', -10, 6.5, 14.74, 6, 7, 0,-1)
-createPanel('coldwar4.png', 3.5, 6.5, 4, 6.8, 7, Math.cos(theta), Math.sin(theta))
+createPanel('coldwar4.png', 3.5, 6.5, 4, 8, 7, Math.cos(theta), Math.sin(theta))
 /** FILMING */
 
 camera.position.x = meters(12);
