@@ -83,6 +83,7 @@ function createPanel(imgURL, x, y, z, w, h, dirx, dirz) {
 
 createPanel('timeline1.png', 14.74, 6.5, -4, 18, 7, -1, 0)
 const theta = 3*Math.PI/4
+const rho = 73.32 / 180 * Math.PI
 createPanel('timeline2.png', 4.95, 6.5, 2.9, 8.55, 7, -Math.cos(theta), -Math.sin(theta))
 createPanel('timeline3.png', 1.26, 6.5, -9.5, 7, 7, 1, 0)
 createPanel('numbers.png', 14.74, 6.5, 11, 6, 7, -1, 0)
@@ -94,6 +95,7 @@ createPanel('espionage5.png', -14.74, 6.5, -4.25, 4.5, 7, 1,0)
 createPanel('coldwar1.png', -14.74, 6.5, 5, 4, 7, 1,0)
 createPanel('coldwar2.png', -14.74, 6.5, 11, 4, 7, 1,0)
 createPanel('coldwar3.png', -10, 6.5, 14.74, 6, 7, 0,-1)
+createPanel('coldwar4.png', 3.5, 6.5, 4, 6.8, 7, Math.cos(theta), Math.sin(theta))
 /** FILMING */
 
 camera.position.x = meters(12);
