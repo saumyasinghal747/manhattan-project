@@ -1,7 +1,7 @@
 
-import { FirstPersonControls } from 'https://unpkg.com/three@latest/examples/jsm/controls/FirstPersonControls.js';
-import { OrbitControls } from 'https://unpkg.com/three@latest/examples/jsm/controls/OrbitControls.js';
-import { TWEEN } from 'https://unpkg.com/three@latest/examples/jsm/libs/tween.module.min'
+import { FirstPersonControls } from 'https://unpkg.com/three@0.141.0/examples/jsm/controls/FirstPersonControls.js';
+import { OrbitControls } from 'https://unpkg.com/three@0.141.0/examples/jsm/controls/OrbitControls.js';
+import { TWEEN } from 'https://unpkg.com/three@0.141.0/examples/jsm/libs/tween.module.min'
 
 
 
