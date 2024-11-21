@@ -1,5 +1,5 @@
-import { RectAreaLightHelper } from 'https://unpkg.com/three@latest/examples/jsm/helpers/RectAreaLightHelper.js';
-import { RectAreaLightUniformsLib } from 'https://unpkg.com/three@latest/examples/jsm/lights/RectAreaLightUniformsLib.js';
+import { RectAreaLightHelper } from 'https://unpkg.com/three@0.141.0/examples/jsm/helpers/RectAreaLightHelper.js';
+import { RectAreaLightUniformsLib } from 'https://unpkg.com/three@0.141.0/examples/jsm/lights/RectAreaLightUniformsLib.js';
 
 const ambientLight = new THREE.AmbientLight(0xf0f0f0, 0.8); // very very dim white light to help with editing
 scene.add(ambientLight);
