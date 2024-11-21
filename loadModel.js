@@ -1,4 +1,4 @@
-import { GLTFLoader } from 'https://unpkg.com/three@latest/examples/jsm/loaders/GLTFLoader.js';
+import { GLTFLoader } from 'https://unpkg.com/three@0.141.0/examples/jsm/loaders/GLTFLoader.js';
   const loader = new GLTFLoader();
 
   loader.load( 'models/untitled.gltf', function ( gltf ) {
